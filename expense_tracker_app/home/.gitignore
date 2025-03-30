@@ -1,0 +1,33 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.sqlite3
+
+# Entornos virtuales
+.venv/
+env/
+venv/
+ENV/
+*.env
+
+# Archivos de configuración del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de logs
+*.log
+
+# Archivos de migraciones de Django
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# Archivos estáticos y media generados
+staticfiles/
+media/
+
+# Archivos de configuración de IDEs
+.vscode/
+.idea/
+*.swp

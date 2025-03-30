@@ -1,0 +1,24 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [ 
+    path('', views.home, name="home"),
+    path('index', views.index, name="index"),
+    path('weekly', views.get_weekly, name="weekly"),
+    path('monthly', views.get_monthly, name="monthly"),
+    path('annually', views.get_annually, name="annually"),
+
+    path('books', views.get_books, name="books"),
+    path('book/<id>', views.get_book_by_ID, name="book_by_ID"),
+    path('categories', views.get_categories, name="categories"),
+    path('search', views.search, name="search")
+    
+    #auth paths
+    # path('/singup', views.singup, name="handleSingup"),
+    # path('/login', views.login, name="handleLogin"),
+    # path('/logout', views.logout, name="handleLogoun"),
+    # path('/reset_password', views.reset_password, name="handleResetPassword"),
+    # path('/reset_password_sent', auth_views.PasswordResetDoneView.as_view(template_name='reset_password_sent.html'), name="resetPasswordSent"),
+    # path('/reset/<uidb64>/<token>', views.reset_password_confirm, name="resetPasswordConfirm"),
+    # path('/reset_password_complete', auth_views.PasswordResetCompleteView.as_view(template_name='reset_password_complete.html'), name="resetPasswordComplete")
+  ]
