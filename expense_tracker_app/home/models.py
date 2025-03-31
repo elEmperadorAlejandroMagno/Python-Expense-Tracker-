@@ -12,10 +12,10 @@ class Book(models.Model):
     title = models.CharField(max_length=200)
     subtitle = models.CharField(max_length=200)
     authors = models.CharField(max_length=100)
-    publishers = models.CharField(max_length=100)
-    publishing_date = models.DateField()
+    publisher = models.CharField(max_length=100)
+    published_date = models.DateField()
     category = models.ForeignKey(BookCategory, on_delete=models.CASCADE, related_name='books')
-    distribution_expenses = models.DecimalField(max_digits=10, decimal_places=2)
+    distribution_expense = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
         return self.title

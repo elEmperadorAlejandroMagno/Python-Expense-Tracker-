@@ -9,7 +9,7 @@ class BookCategoryAdmin(admin.ModelAdmin):
 # Registro del modelo de libros
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('isbn', 'title', 'subtitle', 'authors', 'publishers', 'publishing_date', 'category', 'distribution_expenses')  # Campos visibles
-    list_filter = ('category', 'publishing_date')  # Filtros para facilitar la búsqueda
-    search_fields = ('title', 'author')  # Campos para realizar búsquedas rápidas
+    list_display = ('isbn', 'title', 'subtitle', 'authors', 'publisher', 'published_date', 'category', 'distribution_expense')  # Campos visibles
+    list_filter = ('category', 'published_date')  # Filtros para facilitar la búsqueda
+    search_fields = ('title', 'authors')  # Campos para realizar búsquedas rápidas
 
