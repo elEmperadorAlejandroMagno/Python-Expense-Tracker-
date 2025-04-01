@@ -1,9 +1,4 @@
 {% extends "base.html" %}
-
-{% load static %}
-
-<link rel="stylesheet" href="{% static 'tables.css' %}">
-
 {% block main %}
   {% if messages %}
     <div>
@@ -12,7 +7,7 @@
       {% endfor %}
     </div>
   {% endif %}
-  <span class="select-span">
+  <span class="select-span w-100">
     <select name="category" id="category">
       <option value="" selected>All</option>
       {% for category in categories %}
@@ -20,15 +15,20 @@
       {% endfor %}
     </select>
   </span>
-  <div class="table-container">
+  <div class="table-container w-100">
     {% block content %}{% endblock %}
   </div>
 {% endblock %}
 {% block script %}
 <script>
-  const selectDiv = document.getElementById("category");
-  selectDiv.addEventListener("change", () => {
+  document.addEventListener('DOMContentLoaded', () => {
+    const selectDiv = document.getElementById("category");
+    selectDiv.addEventListener("change", () => {
     //EJECUTAR PETICION GET PARA OBTENER Y FILTRAR LOS LIBROS
+    async function fetchBooks() {
+      await fetch('http://127.0.0.1:8000/get_books');
+    }
+    });
   })
 </script>
 {% endblock %}

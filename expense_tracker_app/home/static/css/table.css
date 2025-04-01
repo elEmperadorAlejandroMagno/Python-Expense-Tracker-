@@ -1,0 +1,28 @@
+.select-span {
+  margin-top: 15px;
+  text-align: center;
+}
+#category {
+  text-align: center;
+  padding: 8px 4px;
+}
+
+.table-container {
+  padding: 10px 8px;
+}
+.table-container table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.th-title, .td-title {
+  width: 500px !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  &:hover {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+  }
+}

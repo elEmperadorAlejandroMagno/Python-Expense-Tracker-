@@ -1,6 +1,8 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.http import JsonResponse
+from django.db.models import Sum
 from .models import Book, BookCategory
 
 # Create your views here.
@@ -11,7 +13,8 @@ def home(request):
   pass
 
 def index(request):
-  #view para renderizar los gráficos e información
+  if request.method == 'GET':
+    return render(request, 'index.html')
   pass
 
 def get_weekly(request):
@@ -30,7 +33,7 @@ def get_books(request):
   if request.method == 'GET':
     BOOKS = Book.objects.all()
     CATEGORIES = BookCategory.objects.all()
-    return render(request, 'base_books.html', { 'books': BOOKS, 'categories': CATEGORIES })
+    return render(request, 'table_books.html', { 'books': BOOKS, 'categories': CATEGORIES })
   pass
 
 def get_books_by_category(request):
@@ -52,4 +55,18 @@ def get_book_by_ID(request, id):
   pass
 
 def search(request):
+  pass
+
+def get_categories(request):
+    if request.method == 'GET':
+      CATEGORIES = BookCategory.objects.all()
+      CATEGORIES_NAMES = [category.name for category in CATEGORIES]
+      return JsonResponse(CATEGORIES_NAMES, safe=False)
+    pass
+
+def get_distribution_expenses(request):
+  if request.method == 'GET':
+    expenses = Book.objects.values('category__name').annotate(total_expense=Sum('distribution_expense'))
+    expenses_data = [{'category': expense['category__name'], 'total_expenses': f"{expense['total_expense']}"} for expense in expenses]
+    return JsonResponse(expenses_data, safe=False)
   pass

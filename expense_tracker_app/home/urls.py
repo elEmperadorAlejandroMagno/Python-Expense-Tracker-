@@ -11,7 +11,11 @@ urlpatterns = [
     path('books', views.get_books, name="books"),
     path('books/', views.get_books_by_category, name="books_filtered"),
     path('book/<int:id>', views.get_book_by_ID, name="book_by_ID"),
-    path('search', views.search, name="search")
+    path('search', views.search, name="search"),
+
+    path('get_categories', views.get_categories, name="get_book_categories"),
+    path('get_distribution_expenses', views.get_distribution_expenses, name="get_distribution_expenses"),
+    
     
     #auth paths
     # path('/singup', views.singup, name="handleSingup"),

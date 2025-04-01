@@ -1,16 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
-
-{% block css %}
-
-<link rel="stylesheet" href="{% static 'index.css' %}">
-
-{% endblock %}
-
 {% block main %}
-
-<div class="chart-container">
-  <canvas id="myChart"></canvas>
+<div class="chart-background d-flex justify-content-center">
+  <div class="chart-container d-flex justify-content-center">
+    <canvas id="myChart"></canvas>
+  </div>
 </div>
-
+{% endblock %}
+{% block script %}
+<script src="{% static 'js/index.js' %}"></script>
 {% endblock %}
