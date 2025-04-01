@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'tables.css' %}">
+
+{% block main %}
+  {% if messages %}
+    <div>
+      {% for message in messages %}
+      <p class="{{ message.tags }}">{{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+  <span class="select-span">
+    <select name="category" id="category">
+      <option value="" selected>All</option>
+      {% for category in categories %}
+        <option value="{{ category.name }}">{{ category.name }}</option>
+      {% endfor %}
+    </select>
+  </span>
+  <div class="table-container">
+    {% block content %}{% endblock %}
+  </div>
+{% endblock %}
+{% block script %}
+<script>
+  const selectDiv = document.getElementById("category");
+  selectDiv.addEventListener("change", () => {
+    //EJECUTAR PETICION GET PARA OBTENER Y FILTRAR LOS LIBROS
+  })
+</script>
+{% endblock %}

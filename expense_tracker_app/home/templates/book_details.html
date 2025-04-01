@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block modal %}
+
+<div class="item-container">
+  <span><p>Id:{{ book.isbn }}</p></span>
+  <div>
+    <p>Title:{{ book.title }}</p>
+    <p>Subtitle:{{ book.subtitle }}</p>
+  </div>
+  <div>
+    <p>Authors: {{ book.authors }}</p>
+    <p>Publisher: {{ book.publisher }}</p>
+  </div>
+  <span><p>Distribution Expenses: {{ book.distribution_expense }}</p></span>
+  <span><p>Published date: {{ book.published_date }}</p></span>
+</div>
+
+{% endblock %}

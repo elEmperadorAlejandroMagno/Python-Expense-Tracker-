@@ -37,7 +37,7 @@ def get_data_from_excel (filename):
                     'subtitle': row['subtitle'],
                     'authors': row['authors'],
                     'publisher': row['publisher'],
-                    'published_date': published_dategs,
+                    'published_date': published_date,
                     'category': category,
                     'distribution_expense': row['distribution_expense']
                 }
