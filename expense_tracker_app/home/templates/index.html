@@ -1,11 +1,53 @@
 {% extends "base.html" %}
 {% load static %}
+{% load custom_filters %}
 {% block main %}
-<div class="chart-background d-flex justify-content-center">
-  <div class="chart-container d-flex justify-content-center">
-    <canvas id="myChart"></canvas>
+<section class="w-100">
+  <div class="chart-background d-flex flex-nowrap justify-content-center">
+    <div class="chart-btn">
+      <button id="PieChart">Pie</button>
+      <button id="BarChart">Bars</button>
+    </div>
+    <div class="chart-container d-flex justify-content-center">
+      <canvas id="myChart"></canvas>
+    </div>
   </div>
-</div>
+</section>
+<section class="w-100 text-center">
+  <div class="section-2-header mt-2">
+    <div class="d-flex justify-content-center gap-2 flex-wrap">
+      <h4 class="">Information grouped by:</h4>
+      <select class="" name="grouped" id="#Grouped">
+        <option value="day" selected>Day</option>
+        <option value="weekly">Weekly</option>
+        <option value="monthly">Monthly</option>
+        <option value="annually">Annually</option>
+      </select>
+    </div>
+  </div>
+  <div class="table-average-container d-flex justify-content-center pt-2">
+  {% if data %}
+    <table class="table table-responsive">
+      <thead>
+        <th scope="col">Category</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Amount</th>
+      </thead>
+      <tbody>
+        {% for item in data %}
+          <tr>
+            <td>{{ item.category }}</td>
+            <td>{{ item.books_quantity }}</td>
+            <td>{{ item.total_expenses|format_currency }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <h4>No se ha podido obtener los datos</h4>
+  {% endif %}
+  </div>
+</section>
 {% endblock %}
 {% block script %}
 <script src="{% static 'js/index.js' %}"></script>

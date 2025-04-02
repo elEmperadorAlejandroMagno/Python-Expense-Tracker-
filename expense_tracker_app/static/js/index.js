@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+  let chartInstance = null;
+
   async function fetchCategories() {
     const response = await fetch('http://127.0.0.1:8000/get_categories');
     if (!response.ok) {
@@ -30,12 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
     return Array.from(colors);
   }
 
-  async function initChart() {
+  async function initChart(type) {
     try {
-      const categories = await fetchCategories();
       const expensesData = await fetchExpenses();
 
-      const labels = categories;
+      const labels = expensesData.map(expense => expense.category);
       const data = expensesData.map(expense => expense.total_expenses);
       const backgroundColors = generateUniqueColors(labels.length);
 
@@ -50,13 +51,29 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       const ctx = document.getElementById('myChart');
-      new Chart(ctx, {
-        type: 'pie',
+
+      if(chartInstance) {
+        chartInstance.destroy();
+      }
+
+      chartInstance = new Chart(ctx, {
+        type: type,
         data: chartData
       });
     } catch (e) {
       console.error('Error al inicializar el gráfico: ', e);
     }
   };
-  initChart();
+
+  initChart('pie');
+
+  const pieChart = document.getElementById("PieChart");
+  const barsChart = document.getElementById("BarChart");
+
+  pieChart.addEventListener('click', () => {
+    initChart('pie');
+  })
+  barsChart.addEventListener('click', () => {
+    initChart('bar');
+  })
 });
