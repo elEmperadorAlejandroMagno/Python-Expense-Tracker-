@@ -1,7 +1,18 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
 {% load custom_filters %}
 {% block main %}
+<div class="main-header w-100 pt-4 mt-3 mb-3 pb-4">
+  <div class="d-flex justify-content-center gap-2 flex-wrap">
+    <h4 class="">Information grouped by:</h4>
+    <select class="p-2" name="grouped" id="Grouped">
+      <option value="day" {% if groupedBy == 'day' %} selected {% endif %}>Day</option>
+      <option value="week" {% if groupedBy == 'week' %} selected {% endif %}>Weekly</option>
+      <option value="month" {% if groupedBy == 'month' %} selected {% endif %}>Monthly</option>
+      <option value="year" {% if groupedBy == 'year' %} selected {% endif %}>Annually</option>
+    </select>
+  </div>
+</div>
 <section class="w-100">
   <div class="chart-background d-flex flex-nowrap justify-content-center">
     <div class="chart-btn">
@@ -14,17 +25,6 @@
   </div>
 </section>
 <section class="w-100 text-center">
-  <div class="section-2-header mt-2">
-    <div class="d-flex justify-content-center gap-2 flex-wrap">
-      <h4 class="">Information grouped by:</h4>
-      <select class="" name="grouped" id="#Grouped">
-        <option value="day" selected>Day</option>
-        <option value="weekly">Weekly</option>
-        <option value="monthly">Monthly</option>
-        <option value="annually">Annually</option>
-      </select>
-    </div>
-  </div>
   <div class="table-average-container d-flex justify-content-center pt-2">
   {% if data %}
     <table class="table table-responsive">

@@ -14,22 +14,25 @@ def home(request):
 
 def index(request):
   if request.method == 'GET':
+    multiplier_map = {
+        'day': 1,
+        'week': 7,
+        'month': 30,
+        'year': 365
+    }
+
+    multiplier_key = request.GET.get('groupedBy')
+    multiplier = multiplier_map.get(multiplier_key, 1)
+
     expenses_list = get_expenses_data()
-    return render(request, 'index.html', { 'data': expenses_list})
+    for item in expenses_list:
+      item['total_expenses'] = round(item['total_expenses'] * multiplier, 2)
+
+    return render(request, 'index.html', { 'data': expenses_list, 'groupedBy': multiplier_key })
   pass
 
-def get_weekly(request):
-  #renderizar los gastos semanales
-  pass
-
-def get_monthly(request):
-  #renderizar los gastos mensuales
-  pass
-
-def get_annually(request):
-  #renderizar los gastos anuales
-  pass
-
+# def get_expenses_with_multiplier(request):
+  
 def get_books(request):
   if request.method == 'GET':
     BOOKS = Book.objects.all()

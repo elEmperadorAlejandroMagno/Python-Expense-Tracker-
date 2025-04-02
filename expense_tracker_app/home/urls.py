@@ -3,10 +3,8 @@ from . import views
 
 urlpatterns = [ 
     path('', views.home, name="home"),
-    path('index', views.index, name="index"),
-    path('weekly', views.get_weekly, name="weekly"),
-    path('monthly', views.get_monthly, name="monthly"),
-    path('annually', views.get_annually, name="annually"),
+    path('index/', views.index, name="index"),
+    # path('get_expenses_with_multiplier', views.get_expenses_with_multiplier, name="multiply_expenses"),
 
     path('books', views.get_books, name="books"),
     path('books/', views.get_books_by_category, name="books_filtered"),

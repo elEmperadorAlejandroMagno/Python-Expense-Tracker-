@@ -1,15 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   let chartInstance = null;
 
-  async function fetchCategories() {
-    const response = await fetch('http://127.0.0.1:8000/get_categories');
-    if (!response.ok) {
-      console.error('Error al obtener las categorías');
-      return[];
-    }
-    return await response.json();
-  }
-
   async function fetchExpenses() {
     const response = await fetch('http://127.0.0.1:8000/get_distribution_expenses');
     if (!response.ok) {
@@ -75,5 +66,11 @@ document.addEventListener('DOMContentLoaded', () => {
   })
   barsChart.addEventListener('click', () => {
     initChart('bar');
+  })
+
+  const groupData = document.getElementById("Grouped");
+  groupData.addEventListener('change', () => {
+    let value = groupData.value;
+    window.location.href = `http://127.0.0.1:8000/index?groupedBy=${value}`;
   })
 });
