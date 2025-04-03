@@ -65,3 +65,23 @@ li a {
     cursor: pointer;
   }
 }
+
+.search-div input {
+  border: none;
+  background-color: inherit;
+  border-bottom: solid 2px #55a;
+  font-family: Roboto;
+  &:focus {
+    outline: none;
+  }
+}
+.btnSearch {
+  margin-left: 20px;
+  border-radius: 10px;
+  font-family: Roboto;
+  &:hover {
+    color: #55a;
+    border-color: #55a;
+    cursor: pointer;
+  }
+}
