@@ -2,6 +2,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.http import JsonResponse
+from django.db import models
 from .models import Book, BookCategory
 from scripts.help import get_expenses_data, get_categories_data
 
@@ -30,12 +31,17 @@ def index(request):
 
     return render(request, 'index.html', { 'data': expenses_list, 'groupedBy': multiplier_key })
   pass
-
-# def get_expenses_with_multiplier(request):
   
 def get_books(request):
   if request.method == 'GET':
-    BOOKS = Book.objects.all()
+    search_query = request.GET.get('search', None)
+    if search_query:
+      BOOKS = Book.objects.filter(
+          models.Q(title__icontains=search_query) |
+          models.Q(isbn__icontains=search_query)
+      )
+    else:
+      BOOKS = Book.objects.all()
     CATEGORIES = get_categories_data()
     return render(request, 'table_books.html', { 'books': BOOKS, 'categories': CATEGORIES })
   pass

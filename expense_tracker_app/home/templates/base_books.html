@@ -10,7 +10,10 @@
   <div class="header-books d-flex flex-wrap w-100 justify-content-around align-content-center">
     <div class="w-50 text-center">
       <div class="search-div w-100 mt-5">
-        <input type="search"><button class="btnSearch" type="submit">Search</button>
+        <form action="{% url 'books' %}" method="GET">
+          <input type="search" name="search">
+          <button class="btnSearch" type="submit">Search</button>
+        </form>
       </div>
     </div>
     <div class="w-50 text-center mt-5">
