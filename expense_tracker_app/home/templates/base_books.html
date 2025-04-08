@@ -19,9 +19,9 @@
     <div class="w-50 text-center mt-5">
       <label for="filter">Filtrar por:</label>
       <select name="category" id="category">
-        <option value="None" selected>All</option>
+        <option value="All" selected>All</option>
         {% for category in categories %}
-          <option value="{{ category }}">{{ category }}</option>
+          <option value="{{ category }}" {% if filter == category %} selected {% endif %}>{{ category }}</option>
         {% endfor %}
       </select>
     </div>
@@ -36,7 +36,7 @@
     const selectDiv = document.getElementById("category");
     selectDiv.addEventListener("change", async () => {
       let category = selectDiv.value;
-      window.location.href =`http://127.0.0.1:8000/books/?category=${category}`;
+      window.location.href =`http://127.0.0.1:8000/books?category=${category}`;
     });
   })
 </script>
