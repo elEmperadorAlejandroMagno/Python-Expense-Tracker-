@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  import { actualizarTabla } from "/update_dom.js"
   let chartInstance = null;
 
   async function fetchExpenses(groupedBy) {
