@@ -33,7 +33,7 @@
         <th scope="col">Quantity</th>
         <th scope="col">Amount</th>
       </thead>
-      <tbody>
+      <tbody id ="tablaCuerpo">
         {% for item in data %}
           <tr>
             <td>{{ item.category }}</td>
@@ -50,5 +50,5 @@
 </section>
 {% endblock %}
 {% block script %}
-<script src="{% static 'js/index.js' %}"></script>
+<script type="module" src="{% static 'js/index.js' %}"></script>
 {% endblock %}

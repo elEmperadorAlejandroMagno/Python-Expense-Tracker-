@@ -1,11 +1,15 @@
+import { actualizarTabla } from './update_dom.js';
+
 document.addEventListener('DOMContentLoaded', () => {
-  import { actualizarTabla } from "/update_dom.js"
+
   let chartInstance = null;
+  let currentGroupedBy = "";
 
   async function fetchExpenses(groupedBy) {
     let url = "http://127.0.0.1:8000/index";
     if (groupedBy) {
       url += `?groupedBy=${groupedBy}`;
+    }
     const response = await fetch(url, {
       headers: {
         'X-Requested-With': 'XMLHttpRequest'
