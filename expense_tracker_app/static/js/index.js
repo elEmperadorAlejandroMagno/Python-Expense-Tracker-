@@ -1,8 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
   let chartInstance = null;
 
-  async function fetchExpenses(multiplier) {
-    const response = await fetch('http://127.0.0.1:8000/index', {
+  async function fetchExpenses(groupedBy) {
+    let url = "http://127.0.0.1:8000/index";
+    if (groupedBy) {
+      url += `?groupedBy=${groupedBy}`;
+    const response = await fetch(url, {
       headers: {
         'X-Requested-With': 'XMLHttpRequest'
       }
