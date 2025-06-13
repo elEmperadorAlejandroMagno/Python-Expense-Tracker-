@@ -30,9 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
     return Array.from(colors);
   }
 
-  async function initChart(type) {
+  async function initChart(type, groupedBy) {
     try {
-      const expensesData = await fetchExpenses();
+      const expensesData = await fetchExpenses(groupedBy);
       console.log(expensesData);
       try {
         const labels = expensesData.map(expense => expense.category);
@@ -79,9 +79,17 @@ document.addEventListener('DOMContentLoaded', () => {
     initChart('bar');
   })
 
+  async function actualizarTablaYGrafico(groupedBy) {
+  // Actualiza la tabla
+  await actualizarTabla(groupedBy);
+  // Actualiza el gráfico (usa el tipo actual, por ejemplo 'pie')
+  initChart('pie', groupedBy);
+  }
+
   const groupData = document.getElementById("Grouped");
   groupData.addEventListener('change', () => {
     let value = groupData.value;
-    window.location.href = `http://127.0.0.1:8000/index?groupedBy=${value}`;
-  })
+    currentGroupedBy = value;
+    actualizarTablaYGrafico(currentGroupedBy);
+  });
 });
